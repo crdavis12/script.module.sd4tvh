@@ -1,5 +1,5 @@
 import logging
-from seasonepisode import SeasonEpisode
+from libschedulesdirect.common.seasonepisode import SeasonEpisode
 
 
 class ProgramMetadata(object):

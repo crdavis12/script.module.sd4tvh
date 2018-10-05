@@ -1,5 +1,5 @@
 import logging
-from station import Station
+from libschedulesdirect.common.station import Station
 
 
 class Channel(object):

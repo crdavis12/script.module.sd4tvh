@@ -1,4 +1,4 @@
-from channel import Channel
+from libhdhomerun.common.channel import Channel
 
 
 class Lineup(list):

@@ -1,5 +1,8 @@
-import urllib2
-from common import Lineup, DiscoveredDeviceList, DiscoveredDevice, Device
+try:  #python2
+    from urllib2 import urlopen
+except ImportError:  #python3
+    from urllib.request import urlopen
+from libhdhomerun.common import Lineup, DiscoveredDeviceList, DiscoveredDevice, Device
 import json
 import logging
 
@@ -104,7 +107,7 @@ class HDHomeRunClient(object):
         :param url:
         :return:
         """
-        response = urllib2.urlopen(url)
+        response = urlopen(url)
 
         encoding = response.headers['content-type'].split('charset=')[-1]
 
@@ -134,7 +137,7 @@ class HDHomeRunClient(object):
         :param url:
         :return:
         """
-        response = urllib2.urlopen(url)
+        response = urlopen(url)
 
         encoding = response.headers['content-type'].split('charset=')[-1]
 
@@ -147,7 +150,7 @@ class HDHomeRunClient(object):
 
         :return:
         """
-        response = urllib2.urlopen(self._public_discovery_url)
+        response = urlopen(self._public_discovery_url)
 
         encoding = response.headers['content-type'].split('charset=')[-1]
 

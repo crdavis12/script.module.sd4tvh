@@ -1,5 +1,5 @@
 import logging
-from responsestatus import ResponseStatus
+from libschedulesdirect.common.responsestatus import ResponseStatus
 
 
 class Token(object):

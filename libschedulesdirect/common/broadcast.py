@@ -1,8 +1,8 @@
 import logging
 from collections import Iterable
 from datetime import datetime, timedelta
-from util import parse_datetime
-from multipartbroadcast import MultipartBroadcast
+from libschedulesdirect.common.util import parse_datetime
+from libschedulesdirect.common.multipartbroadcast import MultipartBroadcast
 
 
 class Broadcast(object):

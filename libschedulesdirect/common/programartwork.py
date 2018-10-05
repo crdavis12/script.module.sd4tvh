@@ -1,6 +1,6 @@
 import logging
 import collections
-from imagelist import ImageList
+from libschedulesdirect.common.imagelist import ImageList
 
 
 class ProgramArtwork(object):

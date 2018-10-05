@@ -1,15 +1,13 @@
 #!/usr/bin/python
 # coding=utf-8
 
-import api
+from libschedulesdirect import api
 from . import batched, parse_datetime, parse_date
-from cache import SchedulesDirectCache
-from common import Status, LineupMap, LineupMapList, ScheduleList, Headend, Lineup, ChangeLineupResponse, ServiceRegion
+from libschedulesdirect.cache import SchedulesDirectCache
+from libschedulesdirect.common import Status, LineupMap, LineupMapList, ScheduleList, Headend, Lineup, ChangeLineupResponse, ServiceRegion
 import logging
 import hashlib
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 class SchedulesDirect(object):
     def __init__(self, username, password, cache_path="./sdcache.db"):
@@ -17,7 +15,7 @@ class SchedulesDirect(object):
 
         self._username = username  # type: unicode
 
-        self._password = hashlib.sha1(password).hexdigest()  # type: unicode
+        self._password = hashlib.sha1(password.encode('utf-8')).hexdigest()  # type: unicode
 
         self._cache = SchedulesDirectCache(cache_path)  # type: SchedulesDirectCache
 

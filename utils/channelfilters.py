@@ -1,6 +1,9 @@
 # coding=utf-8
 
-import ConfigParser
+try:  #python2
+    import ConfigParser
+except ImportError:  #python3
+    from configparser import ConfigParser
 import io
 from libhdhomerun.client import HDHomeRunClient
 import os.path

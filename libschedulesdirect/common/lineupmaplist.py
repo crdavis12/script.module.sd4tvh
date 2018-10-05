@@ -1,5 +1,5 @@
 import logging
-from util import unique
+from libschedulesdirect.common.util import unique
 
 
 class LineupMapList(list):

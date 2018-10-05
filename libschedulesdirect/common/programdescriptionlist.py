@@ -1,5 +1,5 @@
 import logging
-from programdescription import ProgramDescription
+from libschedulesdirect.common.programdescription import ProgramDescription
 
 
 class ProgramDescriptionList(list):

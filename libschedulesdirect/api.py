@@ -1,15 +1,17 @@
 #!/usr/bin/python
 # coding=utf-8
 
-import urllib2
+try:  #python2
+    from urllib2 import Request, build_opener, HTTPSHandler, HTTPError
+except ImportError:  #python3
+    from urllib.request import Request, build_opener, HTTPSHandler
+    from urllib.parse import urlencode
+    from urllib.error import HTTPError
 import json
 import gzip
 import logging
 from . import jsonify
-try:
-    import cStringIO as StringIO
-except ImportError:
-    import StringIO
+from io import StringIO
 
 _base_url = "https://json.schedulesdirect.org"
 _base_uri = "/20141201/"
@@ -187,8 +189,8 @@ def _get_request(method, uri, token=None, post_data=None):  # type: (unicode, un
     logger.debug("_get_request('%s', '%s', '%s', %s)", method, uri, token, post_data)
     json_data = None
     if post_data is not None:
-        json_data = jsonify(post_data)
-    request = urllib2.Request(url=_base_url + _base_uri + uri, data=json_data)
+        json_data = jsonify(post_data).encode('utf-8')
+    request = Request(url=_base_url + _base_uri + uri, data=json_data)
     request.get_method = lambda: method
     if json_data is not None:
         request.add_header("Content-Length", len(json_data))
@@ -220,25 +222,28 @@ def _get_response(request):  # type: (Any) -> Any
     logger.debug("_get_response()")
 
     if logger.isEnabledFor(logging.DEBUG):
-        opener = urllib2.build_opener(urllib2.HTTPSHandler(debuglevel=1))
+        opener = build_opener(HTTPSHandler(debuglevel=1))
     else:
-        opener = urllib2.build_opener(urllib2.HTTPSHandler())
+        opener = build_opener(HTTPSHandler())
 
     try:
         response = opener.open(request)
-    except urllib2.HTTPError, error_response:
+    except HTTPError as error_response:
         response = error_response
 
+    print(type(response))
     content_encoding = response.headers.get("content-encoding", "")
     content_type = response.headers.get("content-type")
     encoding = content_type.split("charset=")[-1]
 
-    buf = StringIO.StringIO(response.read())
+    r = response.read()
 
     if content_encoding == "gzip":
-        buf = gzip.GzipFile(fileobj=buf)
+        s = gzip.decompress(r)
+    else:
+        s = r.decode(encoding)
 
     if content_type.startswith("application/json"):
-        return json.load(fp=buf, encoding=encoding)
+        return json.loads(s)
 
-    return unicode(buf.read(), encoding)
+    return s

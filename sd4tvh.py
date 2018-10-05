@@ -16,29 +16,29 @@ class sd4tvh:
     def __init__(self, options):
         self._logger = logging.getLogger("sd4tvh")  # type: logging.Logger
 
-        self._encoding = u"utf-8"  # type: unicode
+        self._encoding = u"utf-8"  # type: str
 
         self._sd = SchedulesDirect(options.username, options.password)  # type: SchedulesDirect
 
         self._status = None  # type: Status
 
-        self._output_path = options.output_path  # type: unicode
+        self._output_path = options.output_path  # type: str
 
         self._days = options.days  # type: int
 
-        self._hdhomerun_ip = options.hdhomerun  # type: unicode
+        self._hdhomerun_ip = options.hdhomerun  # type: str
 
         self._enable_filter = options.filter  # type: bool
 
-        self._filter_path = options.filter_path  # type: unicode
+        self._filter_path = options.filter_path  # type: str
 
-        self._channels_path = options.channels_path  # type: unicode
+        self._channels_path = options.channels_path  # type: str
 
         self._episode_title_in_description = False  # type: bool
 
         self._content_rating_preference_order = \
             [u"Motion Picture Association of America", u"USA Parental Rating", u"Canadian Parental Rating"]
-        # type: List[unicode]
+        # type: List[str]
 
     def login(self):
         self._logger.info(u"Getting SchedulesDirect token.")
@@ -153,11 +153,11 @@ class sd4tvh:
                         program_artwork = program_artwork_lookup.get(program.artwork_id, None)
                         self._add_programme(f, program, channel, broadcast, program_artwork)
 
-                    self._logger.debug(u"Added %s programs for channel %s on %s.", programs_added, channel.get_display_names().next(), date)
+                    self._logger.debug(u"Added %s programs for channel %s on %s.", programs_added, next(channel.get_display_names()), date)
 
                     channel_programs_added += programs_added
 
-                self._logger.info(u"Added %s programs for channel %s.", channel_programs_added, channel.get_display_names().next())
+                self._logger.info(u"Added %s programs for channel %s.", channel_programs_added, next(channel.get_display_names()))
 
                 total_programs_added += channel_programs_added
 
@@ -167,7 +167,7 @@ class sd4tvh:
 
         self._logger.info(u"Finished.")
 
-    def _get_program_categories(self, program):  # type: (Program) -> Set[unicode]
+    def _get_program_categories(self, program):  # type: (Program) -> Set[str]
         """
 
         :param program:
@@ -314,7 +314,7 @@ class sd4tvh:
             program_attributes.append(u"{0.part_number} of {0.total_parts}".format(broadcast.multipart))
 
         if airdate is True and program.original_air_date is not None:
-            program_attributes.append(u"Originally Aired: " + unicode(program.original_air_date.strftime("%B %-d, %Y")))
+            program_attributes.append(u"Originally Aired: " + str(program.original_air_date.strftime("%B %d, %Y")))
 
         if len(program.content_ratings) != 0:
             for preference in self._content_rating_preference_order:

@@ -1,6 +1,6 @@
 import logging
-from broadcaster import Broadcaster
-from stationlogo import StationLogo
+from libschedulesdirect.common.broadcaster import Broadcaster
+from libschedulesdirect.common.stationlogo import StationLogo
 
 
 class Station(object):

@@ -1,6 +1,6 @@
 import logging
 import collections
-from image import Image
+from libschedulesdirect.common.image import Image
 
 
 class ImageList(list):

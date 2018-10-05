@@ -1,7 +1,7 @@
 import logging
-from lineup import Lineup
-from station import Station
-from channel import Channel
+from libschedulesdirect.common.lineup import Lineup
+from libschedulesdirect.common.station import Station
+from libschedulesdirect.common.channel import Channel
 
 
 class LineupMap(object):

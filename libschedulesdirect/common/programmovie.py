@@ -1,5 +1,5 @@
 import logging
-from qualityrating import QualityRating
+from libschedulesdirect.common.qualityrating import QualityRating
 
 
 class ProgramMovie(object):

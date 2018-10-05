@@ -1,5 +1,5 @@
 import logging
-from servicecountry import ServiceCountry
+from libschedulesdirect.common.servicecountry import ServiceCountry
 
 
 class ServiceRegion(object):

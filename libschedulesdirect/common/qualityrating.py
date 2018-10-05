@@ -16,9 +16,9 @@ class QualityRating(object):
     def get_stars(self):  # type: () -> unicode
         rating_float = float(self.rating)
         rating_int = int(rating_float)
-        stars_str = u"*" * rating_int  # unichr(0x2606) * rating_int
+        stars_str = u"*" * rating_int  # chr(0x2606) * rating_int
         if rating_float - rating_int > 0:
-            stars_str += unichr(0x00BD)
+            stars_str += chr(0x00BD)
         return stars_str
 
     @classmethod

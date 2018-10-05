@@ -8,8 +8,8 @@ class XmltvProgramme(object):
     def __init__(self, start_time, stop_time, channel_id):
         self._logger = logging.getLogger(__name__)
         attr = {
-            u"start": unicode(start_time.strftime("%Y%m%d%H%M%S")),
-            u"stop": unicode(stop_time.strftime("%Y%m%d%H%M%S")),
+            u"start": str(start_time.strftime("%Y%m%d%H%M%S")),
+            u"stop": str(stop_time.strftime("%Y%m%d%H%M%S")),
             u"channel": channel_id}
         self.root = Element(u"programme", attr)
         self._credits = None
@@ -50,17 +50,17 @@ class XmltvProgramme(object):
     def add_episode_num_xmltv_ns(self, season_num=None, total_seasons=None, episode_num=None, total_episodes=None, part_num=None, total_parts=None):
         e = u""
         if season_num is not None:
-            e += unicode(season_num - 1)
+            e += str(season_num - 1)
             if total_seasons is not None:
                 e = u"{0}/{1}".format(e, total_seasons)
         e += u"."
         if episode_num is not None:
-            e += unicode(episode_num - 1)
+            e += str(episode_num - 1)
             if total_episodes is not None:
                 e = u"{0}/{1}".format(e, total_episodes)
         e += u"."
         if part_num is not None:
-            e += unicode(part_num - 1)
+            e += str(part_num - 1)
             if total_parts is not None:
                 e = u"{0}/{1}".format(e, total_parts)
         self.add_episode_num(u"xmltv_ns", e)
@@ -71,7 +71,7 @@ class XmltvProgramme(object):
     def add_previously_shown(self, start=None, channel=None):
         attr = {}
         if start is not None:
-            attr.update({u"start": unicode(start.strftime("%Y%m%d"))})
+            attr.update({u"start": str(start.strftime("%Y%m%d"))})
         if channel is not None:
             attr.update({u"channel": channel})
         SubElement(self.root, u"previously-shown", attr)

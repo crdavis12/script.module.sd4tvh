@@ -1,6 +1,6 @@
 import logging
-from util import parse_date
-from schedulehash import ScheduleHash
+from libschedulesdirect.common.util import parse_date
+from libschedulesdirect.common.schedulehash import ScheduleHash
 
 
 class ScheduleHashList(list):

@@ -1,7 +1,7 @@
 import logging
-from responsestatus import ResponseStatus
-from broadcast import Broadcast
-from schedulemetadata import ScheduleMetadata
+from libschedulesdirect.common.responsestatus import ResponseStatus
+from libschedulesdirect.common.broadcast import Broadcast
+from libschedulesdirect.common.schedulemetadata import ScheduleMetadata
 
 
 class Schedule(object):

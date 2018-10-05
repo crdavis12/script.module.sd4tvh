@@ -5,7 +5,7 @@ import sqlite3
 import json
 import logging
 from . import jsonify, parse_date, result_iterator, batched
-from common import Program, Schedule, ProgramArtwork
+from libschedulesdirect.common import Program, Schedule, ProgramArtwork
 from contextlib import closing
 
 class SchedulesDirectCache:

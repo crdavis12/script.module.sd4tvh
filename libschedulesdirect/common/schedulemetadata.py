@@ -1,6 +1,6 @@
 import logging
 from datetime import datetime
-from util import parse_date, parse_datetime
+from libschedulesdirect.common.util import parse_date, parse_datetime
 
 
 class ScheduleMetadata(object):

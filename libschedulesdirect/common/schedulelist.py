@@ -1,7 +1,7 @@
 import logging
 from datetime import date
-from util import unique
-from schedule import Schedule
+from libschedulesdirect.common.util import unique
+from libschedulesdirect.common.schedule import Schedule
 
 
 class ScheduleList(list):

@@ -1,5 +1,5 @@
 import logging
-from lineup import Lineup
+from libschedulesdirect.common.lineup import Lineup
 
 
 class Headend(object):

@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime
-from util import parse_date
-from eventteam import EventTeam
+from libschedulesdirect.common.util import parse_date
+from libschedulesdirect.common.eventteam import EventTeam
 
 
 class ProgramEventDetails(object):

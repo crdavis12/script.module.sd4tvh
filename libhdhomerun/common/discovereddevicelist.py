@@ -1,4 +1,4 @@
-from discovereddevice import DiscoveredDevice
+from libhdhomerun.common.discovereddevice import DiscoveredDevice
 
 
 class DiscoveredDeviceList(list):
