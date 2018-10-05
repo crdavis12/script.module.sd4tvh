@@ -231,7 +231,6 @@ def _get_response(request):  # type: (Any) -> Any
     except HTTPError as error_response:
         response = error_response
 
-    print(type(response))
     content_encoding = response.headers.get("content-encoding", "")
     content_type = response.headers.get("content-type")
     encoding = content_type.split("charset=")[-1]
